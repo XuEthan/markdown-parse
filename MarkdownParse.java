@@ -7,11 +7,10 @@ import java.util.ArrayList;
 public class MarkdownParse {
     public static ArrayList<String> getLinks(String[] markdown) {
         ArrayList<String> toReturn = new ArrayList<>();
-
         int currentIndex = 0;
         for(int i = 0; i<markdown.length; i++){
-            //if the current line contains an open bracket, then search for the link
-            if(markdown[i].contains("[")){
+            //if the current line contains a set of brackets and parentheses, then search for the link
+            if(markdown[i].contains("[") && markdown[i].contains("]") && markdown[i].contains("(") && markdown[i].contains(")")){
                 // find the next [, then find the ], then find the (, then take up to
                 // the next )
                 int nextOpenBracket = markdown[i].indexOf("[", currentIndex);
