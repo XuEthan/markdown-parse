@@ -10,7 +10,7 @@ public class MarkdownParse {
         int currentIndex = 0;
         for(int i = 0; i<markdown.length; i++){
             //if the current line contains a set of brackets and parentheses, then search for the link
-            if(markdown[i].contains("[") && markdown[i].contains("]") && markdown[i].contains("(") && markdown[i].contains(")")){
+            if(markdown[i].contains("[") && markdown[i].contains("]") && markdown[i].contains("(") && markdown[i].contains(")") && (markdown[i].indexOf("[")<markdown[i].indexOf("("))){
                 // find the next [, then find the ], then find the (, then take up to
                 // the next )
                 int nextOpenBracket = markdown[i].indexOf("[", currentIndex);
@@ -28,6 +28,8 @@ public class MarkdownParse {
 	    String contents = Files.readString(fileName);
         String[] inp = contents.split(System.lineSeparator());
         ArrayList<String> links = getLinks(inp);
-        System.out.println(links);
+        if(links.size()>0){
+            System.out.println(links);
+        }
     }
 }
